@@ -3,11 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28307.757
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BikeStores", "BikeStores\BikeStores.csproj", "{2BB56104-E270-4B73-9D91-CA1EFD56DB31}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BikeStores", "BikeStores\BikeStores.csproj", "{2BB56104-E270-4B73-9D91-CA1EFD56DB31}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BikeStores.Core", "BikeStores.Core\BikeStores.Core.csproj", "{CBC85E7D-3B81-4D13-AD54-994E265D3710}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BikeStores.Core", "BikeStores.Core\BikeStores.Core.csproj", "{CBC85E7D-3B81-4D13-AD54-994E265D3710}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BikeStores.Data", "BikeStores.Data\BikeStores.Data.csproj", "{3FE75875-031C-4720-AE34-755214462EC5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BikeStores.Data", "BikeStores.Data\BikeStores.Data.csproj", "{3FE75875-031C-4720-AE34-755214462EC5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BikeStores.Dto", "BikeStores.Dto\BikeStores.Dto.csproj", "{FCE41C08-B945-4E41-AB2A-C5E2D3AA5170}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{3FE75875-031C-4720-AE34-755214462EC5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3FE75875-031C-4720-AE34-755214462EC5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3FE75875-031C-4720-AE34-755214462EC5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCE41C08-B945-4E41-AB2A-C5E2D3AA5170}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCE41C08-B945-4E41-AB2A-C5E2D3AA5170}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCE41C08-B945-4E41-AB2A-C5E2D3AA5170}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCE41C08-B945-4E41-AB2A-C5E2D3AA5170}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using BikeStores.Data;
+using BikeStores.Dto;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BikeStores.Controllers
@@ -10,6 +13,15 @@ namespace BikeStores.Controllers
     [ApiController]
     public class ValuesController : ControllerBase
     {
+        private readonly IBikeStoresRepository _bikeStoresRepository;
+        private readonly IMapper _mapper;
+
+        public ValuesController(IBikeStoresRepository bikeStoresRepository, IMapper mapper)
+        {
+            _bikeStoresRepository = bikeStoresRepository;
+            _mapper = mapper;
+        }
+
         // GET api/values
         [HttpGet]
         public ActionResult<IEnumerable<string>> Get()
@@ -19,9 +31,12 @@ namespace BikeStores.Controllers
 
         // GET api/values/5
         [HttpGet("{id}")]
-        public ActionResult<string> Get(int id)
+        public ActionResult<ProductsDto> Get(int id)
         {
-            return "value";
+            var product = _bikeStoresRepository.ProductGetById(id);
+            var model = _mapper.Map<ProductsDto>(product);
+            
+            return model;
         }
 
         // POST api/values
