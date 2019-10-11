@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace BikeStores.Dto
+﻿namespace BikeStores.Dto
 {
     public class StoresDto
     {

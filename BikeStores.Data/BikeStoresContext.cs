@@ -1,7 +1,5 @@
-﻿using System;
-using BikeStores.Core;
+﻿using BikeStores.Core;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace BikeStores.Data
 {

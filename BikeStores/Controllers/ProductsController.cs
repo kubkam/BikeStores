@@ -1,57 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using BikeStores.Data;
 using BikeStores.Dto;
 using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace BikeStores.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ValuesController : ControllerBase
+    public class ProductsController : Controller
     {
         private readonly IBikeStoresRepository _bikeStoresRepository;
         private readonly IMapper _mapper;
 
-        public ValuesController(IBikeStoresRepository bikeStoresRepository, IMapper mapper)
+        public ProductsController(IBikeStoresRepository bikeStoresRepository, IMapper mapper)
         {
             _bikeStoresRepository = bikeStoresRepository;
             _mapper = mapper;
         }
 
-        // GET api/values
+        // GET api/products
         [HttpGet]
-        public ActionResult<IEnumerable<string>> Get()
+        public ActionResult<IEnumerable<ProductsDto>> Get()
         {
-            return new string[] { "value1", "value2" };
+            var products = _bikeStoresRepository.GetProducts();
+            var model = _mapper.Map<IEnumerable<ProductsDto>>(products).ToList();
+
+            return model;
         }
 
-        // GET api/values/5
+        // GET api/products/5
         [HttpGet("{id}")]
         public ActionResult<ProductsDto> Get(int id)
         {
             var product = _bikeStoresRepository.ProductGetById(id);
             var model = _mapper.Map<ProductsDto>(product);
-            
+
             return model;
         }
 
-        // POST api/values
+        // POST api/products
         [HttpPost]
         public void Post([FromBody] string value)
         {
         }
 
-        // PUT api/values/5
+        // PUT api/products/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] string value)
         {
         }
 
-        // DELETE api/values/5
+        // DELETE api/products/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

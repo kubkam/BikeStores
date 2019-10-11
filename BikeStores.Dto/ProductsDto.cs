@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-
-namespace BikeStores.Dto
+﻿namespace BikeStores.Dto
 {
     public class ProductsDto
     {
@@ -12,7 +9,7 @@ namespace BikeStores.Dto
         public short ModelYear { get; set; }
         public decimal ListPrice { get; set; }
 
-        public virtual BrandsDto BrandDto { get; set; }
-        public virtual CategoriesDto CategoryDto { get; set; }
+        public virtual BrandsDto Brand { get; set; }
+        public virtual CategoriesDto Category { get; set; }
     }
 }
