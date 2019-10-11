@@ -10,12 +10,18 @@ namespace BikeStores
         {
             CreateMap<Products, ProductsDto>()
                 .ForMember(x => x.Brand, opt => opt.MapFrom(src => src.Brand))
-                .ForMember(x => x.Category, opt => opt.MapFrom(src => src.Category))
-                .ReverseMap();
+                .ForMember(x => x.Category, opt => opt.MapFrom(src => src.Category));
+                //.ReverseMap();
 
             CreateMap<Brands, BrandsDto>();
-
             CreateMap<Categories, CategoriesDto>();
+
+            CreateMap<ProductsDto, Products>()
+                .ForMember(x => x.Brand, opt => opt.MapFrom(src => src.Brand))
+                .ForMember(x => x.Category, opt => opt.MapFrom(src => src.Category));//.ReverseMap();
+
+            CreateMap<BrandsDto, Brands>();
+            CreateMap<CategoriesDto, Categories>();
         }
     }
 }

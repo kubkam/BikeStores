@@ -4,6 +4,10 @@ using BikeStores.Dto;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using BikeStores.Core;
+using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 
 namespace BikeStores.Controllers
 {
@@ -24,7 +28,7 @@ namespace BikeStores.Controllers
         [HttpGet]
         public ActionResult<IEnumerable<ProductsDto>> Get()
         {
-            var products = _bikeStoresRepository.GetProducts();
+            var products = _bikeStoresRepository.GetAllProducts();
             var model = _mapper.Map<IEnumerable<ProductsDto>>(products).ToList();
 
             return model;
@@ -40,22 +44,38 @@ namespace BikeStores.Controllers
             return model;
         }
 
+        // add new
         // POST api/products
         [HttpPost]
-        public void Post([FromBody] string value)
+        public void Post([FromBody] ProductsDto productsDto)
         {
+            var product = _mapper.Map<Products>(productsDto);
+
+            _bikeStoresRepository.AddProduct(product);
+            _bikeStoresRepository.SaveData();
         }
 
+        // update
         // PUT api/products/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public void Put(int id, [FromBody] ProductsDto productsDto)
         {
+            var product = _bikeStoresRepository.ProductGetById(id);
+
+            if (product.ProductId != productsDto.ProductId) return;
+
+            _mapper.Map(productsDto, product);
+
+            _bikeStoresRepository.UpdateProduct(product);
+            _bikeStoresRepository.SaveData();
         }
 
         // DELETE api/products/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
+            _bikeStoresRepository.DeleteProduct(id);
+            _bikeStoresRepository.SaveData();
         }
     }
 }
