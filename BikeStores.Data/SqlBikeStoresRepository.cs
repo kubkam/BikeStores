@@ -43,7 +43,7 @@ namespace BikeStores.Data
 
         public Products AddProduct(Products newProduct)
         {
-           _bikeStoresContext.Add(newProduct);
+           _bikeStoresContext.Products.Add(newProduct);
 
            return newProduct;
         }

@@ -9,16 +9,15 @@ namespace BikeStores
         public MappingProfile()
         {
             CreateMap<Products, ProductsDto>()
-                .ForMember(x => x.Brand, opt => opt.MapFrom(src => src.Brand))
-                .ForMember(x => x.Category, opt => opt.MapFrom(src => src.Category));
-                //.ReverseMap();
+                .ForMember(dest => dest.BrandId, opt => opt.MapFrom(src => src.Brand.BrandId))
+                .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(src => src.Category.CategoryId))
+                .ForMember(dest => dest.BrandName, opt => opt.MapFrom(src => src.Brand.BrandName))
+                .ForMember(dest => dest.CategoryName, opt => opt.MapFrom(src => src.Category.CategoryName));
 
             CreateMap<Brands, BrandsDto>();
             CreateMap<Categories, CategoriesDto>();
 
-            CreateMap<ProductsDto, Products>()
-                .ForMember(x => x.Brand, opt => opt.MapFrom(src => src.Brand))
-                .ForMember(x => x.Category, opt => opt.MapFrom(src => src.Category));//.ReverseMap();
+            CreateMap<ProductsDto, Products>();
 
             CreateMap<BrandsDto, Brands>();
             CreateMap<CategoriesDto, Categories>();

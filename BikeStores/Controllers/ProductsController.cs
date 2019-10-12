@@ -1,10 +1,13 @@
-﻿using AutoMapper;
+﻿using System;
+using AutoMapper;
 using BikeStores.Data;
 using BikeStores.Dto;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using BikeStores.Core;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
@@ -44,25 +47,32 @@ namespace BikeStores.Controllers
             return model;
         }
 
-        // add new
         // POST api/products
         [HttpPost]
-        public void Post([FromBody] ProductsDto productsDto)
+        public ActionResult Post([FromBody] ProductsDto productsDto)
         {
             var product = _mapper.Map<Products>(productsDto);
 
-            _bikeStoresRepository.AddProduct(product);
-            _bikeStoresRepository.SaveData();
+            try
+            {
+                _bikeStoresRepository.AddProduct(product);
+                _bikeStoresRepository.SaveData();
+            }
+            catch (Exception)
+            {
+                return NotFound("BrandId or CategoryId is incorrect in body");
+            }
+
+            return Ok();
         }
 
-        // update
         // PUT api/products/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody] ProductsDto productsDto)
         {
             var product = _bikeStoresRepository.ProductGetById(id);
 
-            if (product.ProductId != productsDto.ProductId) return;
+            if (product.ProductId > 0) return;
 
             _mapper.Map(productsDto, product);
 
